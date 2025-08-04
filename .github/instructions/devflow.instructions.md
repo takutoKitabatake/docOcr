@@ -21,7 +21,6 @@ description: "Java + Spring Boot 開発向け Copilot Agent 用の共通ルール"
 ## テストルール
 - **JUnit5** で必ずテストを追加
 - 既存テストを壊さないこと
-- CI/CD 環境で成功することを確認
 
 ## PR作成ルール
 - Draft PR を作成
