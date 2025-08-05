@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <query id="findByEmployeeIdAndYearMonth">
+        <![CDATA[
+        SELECT os FROM OrganizationStructure os 
+        JOIN FETCH os.employee e 
+        JOIN FETCH os.company c 
+        LEFT JOIN FETCH os.department d 
+        JOIN FETCH os.position p 
+        WHERE e.employeeId = :employeeId AND os.yearMonth = :yearMonth
+        ]]>
+    </query>
+</queries>

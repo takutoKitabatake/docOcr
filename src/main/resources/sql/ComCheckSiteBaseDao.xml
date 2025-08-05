@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <query id="findAllActiveCompanies">
+        <![CDATA[
+        SELECT c FROM Company c WHERE c.createdAt IS NOT NULL ORDER BY c.companyName
+        ]]>
+    </query>
+    
+    <query id="getTotalCompanyCount">
+        <![CDATA[
+        SELECT COUNT(c) FROM Company c
+        ]]>
+    </query>
+</queries>
