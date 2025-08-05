@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <query id="findByEmployeeIdAndYearMonth">
+        <![CDATA[
+        SELECT erd FROM EmployeeReportDownload erd 
+        JOIN FETCH erd.employee e 
+        JOIN FETCH erd.report r 
+        WHERE e.employeeId = :employeeId AND erd.yearMonth = :yearMonth 
+        ORDER BY erd.downloadedAt DESC
+        ]]>
+    </query>
+</queries>

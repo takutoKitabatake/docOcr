@@ -1,5 +1,6 @@
 package employee.entity.dao;
 
+import common.constants.SqlQueries;
 import entity.table.EmployeeReportDownload;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,21 +11,19 @@ import java.util.List;
 
 /**
  * Repository interface for EmployeeReportDownload entity.
+ * SQL queries are externalized to XML files in resources/sql directory.
  */
 @Repository
 public interface EmployeeReportDownloadRepository extends JpaRepository<EmployeeReportDownload, Long> {
 
     /**
      * Find all report downloads by employee ID and year-month.
+     * Query defined in: resources/sql/EmployeeReportDownloadRepository.xml
      * @param employeeId the employee ID
      * @param yearMonth the year-month in YYYY-MM format
      * @return list of employee report downloads
      */
-    @Query("SELECT erd FROM EmployeeReportDownload erd " +
-           "JOIN FETCH erd.employee e " +
-           "JOIN FETCH erd.report r " +
-           "WHERE e.employeeId = :employeeId AND erd.yearMonth = :yearMonth " +
-           "ORDER BY erd.downloadedAt DESC")
+    @Query(SqlQueries.EMPLOYEE_REPORT_FIND_BY_EMPLOYEE_AND_YEAR_MONTH)
     List<EmployeeReportDownload> findByEmployeeIdAndYearMonth(
             @Param("employeeId") Long employeeId, 
             @Param("yearMonth") String yearMonth);

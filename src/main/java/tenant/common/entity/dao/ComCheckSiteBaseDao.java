@@ -1,5 +1,6 @@
 package tenant.common.entity.dao;
 
+import common.constants.SqlQueries;
 import entity.table.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,14 +11,16 @@ import java.util.Optional;
 
 /**
  * Base DAO for common site checks and tenant operations.
+ * SQL queries are externalized to XML files in resources/sql directory.
  */
 @Repository
 public interface ComCheckSiteBaseDao extends JpaRepository<Company, Long> {
 
     /**
      * Find all active companies.
+     * Query defined in: resources/sql/ComCheckSiteBaseDao.xml
      */
-    @Query("SELECT c FROM Company c WHERE c.createdAt IS NOT NULL ORDER BY c.companyName")
+    @Query(SqlQueries.COM_CHECK_FIND_ALL_ACTIVE_COMPANIES)
     List<Company> findAllActiveCompanies();
 
     /**
@@ -32,7 +35,8 @@ public interface ComCheckSiteBaseDao extends JpaRepository<Company, Long> {
 
     /**
      * Get total count of companies.
+     * Query defined in: resources/sql/ComCheckSiteBaseDao.xml
      */
-    @Query("SELECT COUNT(c) FROM Company c")
+    @Query(SqlQueries.COM_CHECK_GET_TOTAL_COMPANY_COUNT)
     long getTotalCompanyCount();
 }
